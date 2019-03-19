@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from polls.models import Poll
 
 
 def polls_list(request):
-    context = {'polls_list': list()}
+    context = {'polls_list': Poll.objects.all()}
     return render(request, 'polls/list.html', context)

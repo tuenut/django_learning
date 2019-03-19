@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Опросы</title>
-</head>
-<body>
-    {% if polls_list %}
-    <ul>
-        {% for poll in polls_list %}
-            <li>{{poll}}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <p>Извините, ни один опрос сейчас не проводится.</p>
-    {% endif %}
-</body>
-</html>
+{% extends "main/base.html" %}
+{% block title %}Список опросов{% endblock %}
+{% block content %}
+    <div class="row justify-content-start w-100">
+        {% if polls_list %}
+            {% for poll in polls_list %}
+                <div class="d-flex align-items-stretch mt-1 mb-2 ml-2 mr-1">
+                    <div class="card w-25">
+                        <div class="card-header text-center"><h5>{{ poll.name }}</h5></div>
+                        <div class="card-body">
+                            <p class="card-text">{{ poll.description }}</p>
+                            <p class="card-text text-muted">Вопросов: {{ poll.question_set.count }}</p>
+                            <a href="#" class="btn btn-primary">Пройти опрос</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <small>{{ poll.created }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Извините, ни один опрос сейчас не проводится.</p>
+        {% endif %}
+    </div>
+{% endblock %}

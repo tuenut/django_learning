@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Poll(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, null=True)
     description = models.TextField(max_length=2048)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
