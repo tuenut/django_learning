@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 {% block title %}Список опросов{% endblock %}
 {% block content %}
+
     <div class="row">
         {% if polls_list %}
             {% for poll in polls_list %}
@@ -10,7 +11,9 @@
                         <div class="card-body d-flex align-content-between flex-column">
                             <p class="card-text h-100">{{ poll.description }}</p>
                             <p class="card-text text-muted align-self-end">Вопросов: {{ poll.question_set.count }}</p>
-                            <a href="#" class="btn btn-primary align-self-end">Пройти опрос</a>
+                            <a href="{% url 'polls.poll_page' poll.id %}" class="btn btn-primary align-self-end">
+                                Пройти опрос
+                            </a>
                         </div>
                         <div class="card-footer text-muted">
                             <small>{{ poll.created }}</small>
@@ -22,4 +25,5 @@
             <p>Извините, ни один опрос сейчас не проводится.</p>
         {% endif %}
     </div>
+
 {% endblock %}
